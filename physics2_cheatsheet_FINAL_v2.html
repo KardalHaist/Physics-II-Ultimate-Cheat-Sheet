@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Physics 2 Final Exam Cheat Sheet v2</title>
+<style>
+  @page { size: letter; margin: 0.22in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body {
+    font-family: 'Cambria', 'Times New Roman', serif;
+    font-size: 7pt;
+    line-height: 1.1;
+    color: #000;
+  }
+  .page {
+    width: 8.05in;
+    height: 10.55in;
+    page-break-after: always;
+    column-count: 3;
+    column-gap: 0.1in;
+    column-rule: 0.5px solid #aaa;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+  h1 {
+    font-size: 8.5pt;
+    background: #000;
+    color: #fff;
+    padding: 0px 4px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+    text-align: center;
+    letter-spacing: 0.2px;
+    break-inside: avoid;
+  }
+  h2 {
+    font-size: 7.5pt;
+    font-weight: bold;
+    background: #ddd;
+    padding: 0px 3px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+    border-left: 2px solid #000;
+    break-inside: avoid;
+  }
+  h3 {
+    font-size: 7.2pt;
+    font-weight: bold;
+    margin-top: 1px;
+    color: #b00;
+  }
+  .top {
+    column-span: all;
+    background: #f0f0f0;
+    border: 1px solid #000;
+    padding: 1px 4px;
+    margin-bottom: 2px;
+    font-size: 6.8pt;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .top b { font-size: 7.5pt; }
+  p { margin-bottom: 0px; }
+  .key {
+    background: #fffacd;
+    padding: 0px 2px;
+    border-left: 2px solid #d4a017;
+    margin: 1px 0;
+  }
+  .cheat {
+    background: #e6f3ff;
+    padding: 0px 2px;
+    border-left: 2px solid #0066cc;
+    margin: 1px 0;
+  }
+  .cheat::before {
+    content: "★ ";
+    color: #cc0000;
+    font-weight: bold;
+  }
+  .exam {
+    background: #ffe8e8;
+    padding: 1px 3px;
+    border-left: 3px solid #cc0000;
+    margin: 1px 0;
+  }
+  .exam::before {
+    content: "▶ ";
+    color: #cc0000;
+    font-weight: bold;
+  }
+  .exam-section {
+    column-span: all;
+    border: 2px solid #cc0000;
+    background: #fff5f5;
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    break-inside: avoid;
+  }
+  .exam-section h1 {
+    margin-top: 0;
+    background: #cc0000;
+    font-size: 9pt;
+  }
+  .exam-grid {
+    column-count: 3;
+    column-gap: 8px;
+    column-rule: 0.5px dotted #cc0000;
+  }
+  .exam-grid h3 {
+    margin-top: 3px;
+    margin-bottom: 1px;
+    font-size: 7.4pt;
+    background: #cc0000;
+    color: #fff;
+    padding: 0 3px;
+    border-radius: 2px;
+    break-inside: avoid;
+  }
+  .exam-grid p { font-size: 6.9pt; line-height: 1.15; }
+  .worked {
+    background: #fffbe0;
+    border: 1px dotted #b8860b;
+    padding: 1px 3px;
+    margin: 1px 0;
+    font-size: 6.7pt;
+  }
+  .note {
+    font-size: 6.5pt;
+    font-style: italic;
+    color: #444;
+    padding-left: 4px;
+  }
+  .warn {
+    background: #ffeb99;
+    border: 1px solid #cc6600;
+    padding: 1px 3px;
+    font-size: 6.8pt;
+    font-weight: bold;
+    color: #803300;
+    text-align: center;
+    margin: 1px 0;
+  }
+  .pitfall {
+    background: #ffe0f0;
+    border-left: 2px solid #c0006c;
+    padding: 0px 3px;
+    margin: 1px 0;
+    font-size: 6.7pt;
+  }
+  .pitfall::before { content: "⚠ "; color: #c0006c; font-weight: bold; }
+  sup, sub { font-size: 5.5pt; }
+  ul { padding-left: 11px; margin: 1px 0; }
+  ul li { margin-bottom: 0px; }
+  .twocol-mini {
+    column-count: 2;
+    column-gap: 6px;
+    column-rule: 0.5px dotted #999;
+    font-size: 6.5pt;
+  }
+  .twocol-mini p { margin-bottom: 1px; }
+  table.units, table.prefixes {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 6.4pt;
+  }
+  table.units th, table.units td, table.prefixes th, table.prefixes td {
+    border: 0.5px solid #888;
+    padding: 0px 2px;
+    text-align: left;
+    line-height: 1.1;
+  }
+  table.units th, table.prefixes th { background: #e0e0e0; }
+  .units-section {
+    column-span: all;
+    border: 1.5px solid #006600;
+    background: #f0fff0;
+    padding: 2px 4px;
+    margin-top: 3px;
+    break-inside: avoid;
+  }
+  .units-section h1 { background: #006600; margin-top:0; font-size: 8pt;}
+  .units-grid {
+    column-count: 2;
+    column-gap: 8px;
+  }
+  .triage-section {
+    column-span: all;
+    border: 1.5px solid #0066cc;
+    background: #f0f8ff;
+    padding: 2px 4px;
+    margin-top: 3px;
+    break-inside: avoid;
+  }
+  .triage-section h1 { background: #0066cc; margin-top:0; font-size: 8pt;}
+  .triage-grid {
+    column-count: 3;
+    column-gap: 6px;
+    column-rule: 0.5px dotted #0066cc;
+    font-size: 6.4pt;
+  }
+  .triage-grid p { margin-bottom: 1px; }
+  .info-box {
+    background: #f0f4ff;
+    border: 1px solid #6677aa;
+    padding: 1px 3px;
+    font-size: 6.6pt;
+    margin: 1px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- =============================== PAGE 1 (FRONT) =============================== -->
+<div class="page">
+
+<div class="top">
+<b>PHYSICS 2 FINAL CHEAT SHEET</b> &nbsp;|&nbsp;
+k=8.99×10⁹ N·m²/C² • ε₀=8.85×10⁻¹² C²/N·m² • μ₀=4π×10⁻⁷ T·m/A • e=1.602×10⁻¹⁹ C • mₑ=9.11×10⁻³¹ kg • mₚ=1.67×10⁻²⁷ kg • c=3.00×10⁸ m/s • g=9.81 m/s² • 1 eV=1.602×10⁻¹⁹ J
+&nbsp;|&nbsp; <span style="color:#cc0000;font-weight:bold;">▶ EXAM-FLAGGED</span> &nbsp; <span style="color:#0066cc;font-weight:bold;">★ Cheat formula</span>
+</div>
+
+<!-- ★★★ STARRED EXAM PROBLEMS ★★★ -->
+<div class="exam-section">
+<h1>★★★ FINAL EXAM — STARRED PROBLEM TYPES ★★★</h1>
+<div class="warn">⚠ "NEVER USE WEBERS" — keep magnetic flux as T·m², NOT Wb (1 Wb = 1 T·m²)</div>
+
+<div class="exam-grid">
+
+<h3>① Insulating Sphere — E inside/outside</h3>
+<p class="exam">Uniform Q in sphere radius R. <b>Inside (r&lt;R):</b> E = kQr/R³ <br><b>Outside (r≥R):</b> E = kQ/r²</p>
+<p class="worked"><b>Worked:</b> E=760 N/C at r=R/4 (inside): kQ(R/4)/R³ = kQ/(4R²) = 760 → kQ/R² = 3040.<br>At r=4R (outside): E = kQ/(4R)² = kQ/(16R²) = 3040/16 = <b>190 N/C</b></p>
+<p class="note">If asked at r=R: both formulas give E=kQ/R² (continuous)</p>
+
+<h3>② Equivalent Resistance</h3>
+<p class="exam"><b>Series:</b> R_eq = R₁+R₂+R₃...<br><b>Parallel:</b> 1/R_eq = 1/R₁+1/R₂+...<br><b>Two parallel:</b> R_eq = R₁R₂/(R₁+R₂)</p>
+<p class="exam"><b>Method:</b> Reduce innermost groups first → simplify outward → I_total = ε/R_eq → back-substitute V=IR for each branch.</p>
+<p class="exam"><b>Same R in parallel</b> (n of them): R_eq = R/n</p>
+
+<h3>③ RC Circuit (timing)</h3>
+<p class="exam"><b>Charging:</b> q(t) = Q_max[1−e<sup>−t/RC</sup>] &nbsp;Q_max=Cε<br>i(t) = (ε/R)·e<sup>−t/RC</sup><br>V_C(t) = ε(1−e<sup>−t/RC</sup>) ; V_R(t) = ε·e<sup>−t/RC</sup></p>
+<p class="exam"><b>At t=0:</b> V_C=0, V_R=ε(MAX), i=ε/R(MAX), q=0<br><b>At t=∞:</b> V_C=ε(MAX), V_R=0, i=0, q=Q_max<br><b>τ = RC</b> (time to reach 63% of final)</p>
+<p class="exam"><b>Discharging:</b> q=Q₀e<sup>−t/RC</sup>; i=(Q₀/RC)e<sup>−t/RC</sup>; V=(Q₀/C)e<sup>−t/RC</sup></p>
+<p class="note">Correction to your notes: exponent is −t/RC (not −ε/RC)</p>
+
+<h3>④ B from Moving Charge</h3>
+<p class="exam"><b>B = (μ₀/4π)(qv×r̂)/r²</b><br>|B| = (μ₀/4π)·(qv sinθ)/r²</p>
+<p class="exam">θ = angle between v and r. Direction: RHR (point fingers along v, curl to r).</p>
+
+<h3>⑤ Long Straight Wire</h3>
+<p class="exam"><b>B = μ₀I/(2πr)</b> &nbsp;(outside wire, dist r from axis)</p>
+<p class="exam"><b>Direction:</b> RHR — thumb along I, fingers curl in direction of B</p>
+<p class="exam">Inside (r&lt;R): B = μ₀Ir/(2πR²)</p>
+
+<h3>⑥ Ampere's Law (Multiple Currents)</h3>
+<p class="exam"><b>∮B·dl = μ₀·I_encl</b></p>
+<p class="exam"><b>Sign rule:</b> Curl right hand along path direction. Thumb = + current direction.<br>★ <b>CCW path</b> (viewed from given side) → + out of page<br>★ <b>CW path</b> → + into page</p>
+<p class="exam"><b>I_encl</b> = sum with signs: I₁(±) + I₂(±) + I₃(±)</p>
+<p class="exam"><b>Then:</b> B(2πr) = μ₀I_encl → B = μ₀I_encl/(2πr)</p>
+
+<h3>⑦ Toroid B-field</h3>
+<p class="exam"><b>B = μ₀NI/(2πr)</b> &nbsp;(inside toroid, r = dist from CENTER axis)</p>
+<p class="exam">N = total turns, I = current. Outside: B = 0</p>
+<p class="warn">⚠ Keep flux Φ_B = BA in T·m², not Wb</p>
+
+<h3>⑧ Faraday's Law of Induction</h3>
+<p class="exam"><b>ε = −dΦ_B/dt</b> &nbsp;Φ_B = BA cosθ</p>
+<p class="exam"><b>If B(t) varies, θ const:</b> ε = −A cosθ·(dB/dt)<br><b>If θ(t) varies, B const:</b> ε = BA sinθ·(dθ/dt)<br><b>Both vary:</b> ε = −A[cosθ·(dB/dt) − B sinθ·(dθ/dt)]</p>
+<p class="exam"><b>Rotating coil:</b> θ=ωt → ε = NBAω sin(ωt); ε_max = NBAω</p>
+<p class="exam"><b>N loops:</b> multiply ε by N</p>
+
+<h3>⑨ Slide-Wire Generator</h3>
+<p class="exam"><b>ε = vBL</b> &nbsp;(motional EMF)</p>
+<p class="exam">v = rod speed, B = field strength, L = rod length perp to v &amp; B</p>
+<p class="exam"><b>Induced current:</b> I = ε/R = vBL/R<br><b>Force to push rod:</b> F = BIL = B²L²v/R<br><b>Power dissipated:</b> P = I²R = (vBL)²/R</p>
+
+<h3>⑩ RL Circuit</h3>
+<p class="exam"><b>Energizing:</b> i(t) = I_max[1 − e<sup>−Rt/L</sup>] ; I_max=ε/R<br><b>Decay:</b> i(t) = I₀·e<sup>−Rt/L</sup></p>
+<p class="exam"><b>τ = L/R</b> (time constant) &nbsp;|&nbsp; V_L(t) = ε·e<sup>−Rt/L</sup> (energizing)</p>
+<p class="exam"><b>At t=0:</b> i=0 (inductor blocks). <b>t=∞:</b> i=ε/R (inductor=wire)</p>
+
+<h3>⑪ EM Waves — Full Set</h3>
+<p class="exam"><b>E(x,t) = E_m sin(kx − ωt)</b><br><b>B(x,t) = B_m sin(kx − ωt)</b></p>
+<p class="exam"><b>Amplitude ratio:</b> E_m/B_m = c<br><b>Instantaneous ratio:</b> E(t)/B(t) = c</p>
+<p class="exam"><b>Wave speed:</b> c = 1/√(μ₀ε₀) = 3×10⁸ m/s<br><b>Wave number:</b> k = 2π/λ &nbsp;[rad/m]<br><b>Angular freq:</b> ω = 2π/T = 2πf &nbsp;[rad/s]<br><b>c = fλ = ω/k</b></p>
+<p class="exam"><b>Poynting vector:</b> S⃗ = (1/μ₀)(E⃗ × B⃗) [W/m²]<br>|S| = EB/μ₀ = E²/(cμ₀) = cB²/μ₀<br><b>Avg intensity:</b> I = E_m·B_m/(2μ₀) = E_m²/(2cμ₀) = ½cε₀E_m²</p>
+<p class="exam"><b>Direction:</b> E⃗ × B⃗ = propagation direction (RHR)</p>
+
+</div>
+</div>
+
+<!-- CH 21-24 (CONDENSED) -->
+<h1>CH 21–24 CONDENSED (1 question)</h1>
+
+<h2>Coulomb &amp; E-fields</h2>
+<p class="key"><b>F = kq₁q₂/r²</b>; <b>E = kQ/r²</b> (point)</p>
+<p class="key"><b>Inf line:</b> E=λ/(2πε₀r)=2kλ/r</p>
+<p class="key"><b>Inf sheet:</b> E=σ/(2ε₀); <b>Conductor:</b> E=σ/ε₀</p>
+<p class="key"><b>Ring axis:</b> E=kqz/(z²+a²)<sup>3/2</sup></p>
+<p class="cheat">Square ctr alt±q: E=4√2·kq/a²</p>
+<p class="cheat">Semicircle ½±Q: E=4kQ/(πa²)</p>
+<p class="cheat">Zero-E pt (2 like q): x=s/(1+√(q₂/q₁))</p>
+<p class="cheat">Two ∥ sheets same sign: between=|σ_A−σ_B|/(2ε₀); outside=(σ_A+σ_B)/(2ε₀). Opp sign: swap.</p>
+
+<h2>Dipole</h2>
+<p class="key">τ⃗=p⃗×E⃗; |τ|=pE sinθ</p>
+<p class="key">U=−p⃗·E⃗=−pE cosθ; F_net=0 unif</p>
+
+<h2>Gauss</h2>
+<p class="key"><b>Φ=∮E·dA=Q_encl/ε₀</b></p>
+<p class="key">Inside unif sphere: E=kQr/R³=ρr/(3ε₀)</p>
+<p class="key">Inside unif cyl: E=ρr/(2ε₀)</p>
+<p class="cheat">Cavity in sphere: E=ρh⃗/(3ε₀) UNIFORM</p>
+
+<h2>Potential</h2>
+<p class="key">V=kQ/r; U=qV; ΔV=−∫E·dl; E=−dV/dx</p>
+<p class="key">W_field=qΔV=−ΔU; ½mv²=qΔV (rest)</p>
+<p class="key">Plates: E=V/d. Line: ΔV=2kλ ln(r₀/r)</p>
+
+<h2>Capacitors</h2>
+<p class="key">Q=CV; C=ε₀A/d (∥-plate); κε₀A/d w/diel</p>
+<p class="key">Series: 1/C_eq=Σ1/Cᵢ; Par: C_eq=ΣCᵢ</p>
+<p class="key"><b>U=½CV²=Q²/(2C)=½QV</b>; u=½ε₀E²</p>
+<p class="cheat">Disconnected (Q const): U_new/U_old=d_new/d_old<br>Connected (V const): U_new/U_old=d_old/d_new</p>
+
+<!-- CH 25 -->
+<h1>CH 25 — EMF &amp; CIRCUITS</h1>
+<p class="key"><b>I=ε/(R+r)</b>; V_term=ε−Ir (discharge)</p>
+<p class="key"><b>V=IR</b>; <b>P=IV=I²R=V²/R</b>; W=εIt</p>
+<p class="cheat">Aiding batt: I=(ε₁+ε₂)/ΣR; Opp: I=|ε₁−ε₂|/ΣR (dir = bigger ε)</p>
+
+<h2>Current Density &amp; Resistivity</h2>
+<p class="key"><b>I = nqv_d·A</b> &nbsp;(n=charge/vol, v_d=drift vel)</p>
+<p class="key"><b>J = I/A = nqv_d</b> &nbsp;[A/m²]</p>
+<p class="key"><b>R = ρL/A</b>; ρ=resistivity [Ω·m]; σ=1/ρ (conductivity)</p>
+<p class="key"><b>E = ρJ</b> (microscopic Ohm's law)</p>
+
+<!-- CH 26 -->
+<h1>CH 26 — KIRCHHOFF &amp; RC</h1>
+<p class="key"><b>Loop:</b> ΣV=0; <b>Junction:</b> ΣI_in=ΣI_out</p>
+<p class="key"><b>R-series:</b> R_eq=ΣRᵢ; <b>R-par:</b> 1/R_eq=Σ1/Rᵢ</p>
+<p class="key">P_dissipated by R = I²R = V²/R</p>
+
+<h2>★ Find Time Algebra (RC/RL)</h2>
+<p class="cheat"><b>Charging V_C=αε:</b> t = −RC·ln(1−α)<br>α=½ → t=RC·ln(2)≈0.693RC</p>
+<p class="cheat"><b>Decay to fraction f of I₀:</b> t = −τ·ln(f)<br>(works for both RC and RL with τ=RC or L/R)</p>
+<p class="cheat"><b>RL energize to fraction f of I_max:</b><br>t = −(L/R)·ln(1−f)</p>
+
+<h2>★ Energy-Storage Cheat</h2>
+<table class="units" style="font-size:6.3pt">
+<tr><th>Element</th><th>Energy</th><th>Density</th></tr>
+<tr><td>Capacitor</td><td>½CV²=Q²/2C</td><td>u=½ε₀E²</td></tr>
+<tr><td>Inductor</td><td>½LI²</td><td>u=B²/(2μ₀)</td></tr>
+<tr><td>EM Wave</td><td>—</td><td>u=ε₀E²=B²/μ₀</td></tr>
+</table>
+<p class="note">In EM wave: u_E = u_B (equal split)</p>
+
+<h2>★ Math Quick-Ref</h2>
+<p class="info-box"><b>Derivatives:</b> d/dt(e<sup>at</sup>)=ae<sup>at</sup>; d/dt(sin ωt)=ω cos ωt; d/dt(cos ωt)=−ω sin ωt</p>
+<p class="info-box"><b>Vectors:</b> A·B=AB cosθ (scalar); A×B=AB sinθ (vector ⊥ both, RHR for dir)</p>
+<p class="info-box"><b>Geometry:</b> Circle area=πr²; Sphere area=4πr², vol=(4/3)πr³; Cylinder side area=2πrL; Disk area=π(R₂²−R₁²) for annulus</p>
+
+</div>
+
+<!-- =============================== PAGE 2 (BACK) =============================== -->
+<div class="page">
+
+<!-- CH 27 -->
+<h1>CH 27 — MAGNETIC FORCE</h1>
+<p class="key"><b>F⃗=qv⃗×B⃗</b>; |F|=qvB sinθ</p>
+<p class="key"><b>F⃗ wire:</b> F⃗=IL⃗×B⃗; |F|=BIL sinθ</p>
+<p class="key"><b>Φ_B=∫B·dA=BA cosθ</b> [T·m²]</p>
+
+<h2>Circular motion</h2>
+<p class="key"><b>r=mv/(qB)</b>; T=2πm/(qB); ω=qB/m</p>
+<p>v=qBr/m; KE=q²B²r²/(2m)</p>
+
+<h2>★ Velocity selector / Mass spec</h2>
+<p class="cheat"><b>Vel sel:</b> v=E/B (qE=qvB ↔ undeflected)</p>
+<p class="cheat">V=Ed across plates</p>
+<p class="cheat"><b>Mass spec:</b> v=√(2qV/m); <b>m/q=B²R²/(2V)</b></p>
+<p class="cheat"><b>Free-fall into B:</b> v=√(2gh) at entry; F=qvB</p>
+
+<h2>★ Magnetic Torque on Loop</h2>
+<p class="key"><b>μ⃗ = NIA·n̂</b> (mag dipole moment); n̂ from RHR around I</p>
+<p class="key"><b>τ⃗ = μ⃗ × B⃗</b>; |τ|=μB sinθ=NIAB sinθ</p>
+<p class="key"><b>U = −μ⃗·B⃗ = −μB cosθ</b></p>
+<p class="cheat">Stable equilibrium: μ⃗ ∥ B⃗ (θ=0, U min). Unstable: antiparallel (θ=π).</p>
+
+<!-- CH 28 -->
+<h1>CH 28 — AMPERE'S LAW</h1>
+<p class="key"><b>∮B·dl = μ₀I_encl</b></p>
+<p class="key"><b>Biot–Savart:</b> dB⃗ = (μ₀/4π)·(I dl⃗×r̂)/r²</p>
+<p class="key"><b>Long wire:</b> B=μ₀I/(2πr)</p>
+<p class="key"><b>Inside solid wire (r&lt;R):</b> B=μ₀Ir/(2πR²)</p>
+<p class="key"><b>Solenoid:</b> B=μ₀nI (n=N/L)</p>
+<p class="key"><b>Toroid in:</b> B=μ₀NI/(2πr); <b>Out:</b> B=0</p>
+<p class="key"><b>Ctr of circ loop:</b> B=μ₀I/(2R)</p>
+<p class="key"><b>Moving pt charge:</b> B=(μ₀/4π)·qv sinθ/r²</p>
+<p class="exam"><b>Multiple I sign:</b> CCW path → + out of page; CW → + into page (RHR)</p>
+
+<h2>Parallel wires</h2>
+<p class="key"><b>F/L=μ₀I₁I₂/(2πd)</b>. Same dir→ATTRACT; opp→REPEL</p>
+
+<h2>★ Cheats</h2>
+<p class="cheat"><b>Coax</b> (I₁ inner, I₂ outer same dir): a&lt;r&lt;b: B=μ₀I₁/(2πr); r&gt;c: B=μ₀(I₁+I₂)/(2πr). Opp&amp;equal: B=0 outside.</p>
+<p class="cheat"><b>3 ∥ wires (eq d):</b> outer F/L=μ₀I²/(4πd); middle (sym)=0</p>
+<p class="cheat"><b>Square loop side a near wire</b> (ctr d, ∥ sides): F=μ₀I₁I₂a²/[2π(d²−a²/4)]</p>
+
+<!-- CH 29 -->
+<h1>CH 29 — FARADAY &amp; INDUCTION</h1>
+<p class="key"><b>ε=−dΦ_B/dt</b>; ∮E·dl=−dΦ_B/dt</p>
+<p class="key"><b>Φ_B=BA cosθ</b> (T·m², not Wb!)</p>
+<p class="key"><b>Lenz:</b> induced I opposes ΔΦ</p>
+
+<h2>★ EMF when B(t) and/or θ(t) vary</h2>
+<p class="exam"><b>B(t) varies, θ const:</b> ε=−A cosθ·(dB/dt)</p>
+<p class="exam"><b>θ(t) varies, B const:</b> ε=BA sinθ·(dθ/dt)</p>
+<p class="exam"><b>Both vary:</b> ε=−A[cosθ·dB/dt − B sinθ·dθ/dt]</p>
+<p class="exam"><b>Rotating coil:</b> ε=NBAω sin(ωt); ε_max=NBAω</p>
+
+<h2>Motional EMF — Slide-wire</h2>
+<p class="key"><b>ε=BLv</b>; I=BLv/R</p>
+<p class="key">F to push: F=B²L²v/R; P=(BLv)²/R</p>
+<p class="cheat">Loop entering/exiting B: I=BLv/R during entry &amp; exit (opp dirs); I=0 fully inside</p>
+
+<h2>★ Induced E from changing B</h2>
+<p class="cheat"><b>Solenoid w/ dI/dt:</b> r&lt;R_sol: E=(μ₀nr/2)(dI/dt); r&gt;R_sol: E=(μ₀nR²/(2r))(dI/dt); r=0: E=0</p>
+<p class="cheat"><b>Cyl w/ B(t)=B₀+B₁t</b> outside: |E|=B₁A/(2πr)</p>
+
+<h2>Displacement current (Maxwell)</h2>
+<p class="key"><b>I_D=ε₀(dΦ_E/dt)</b>; j_D=ε₀(dE/dt)</p>
+<p class="key">Ampere–Maxwell: ∮B·dl=μ₀(I_C+I_D)</p>
+<p class="cheat">Charging cap: r&lt;R: B=μ₀I_C·r/(2πR²); r&gt;R: B=μ₀I_C/(2πr)</p>
+
+<!-- CH 30 -->
+<h1>CH 30 — INDUCTANCE &amp; RLC</h1>
+<p class="key"><b>ε_L=−L(dI/dt)</b>; L=NΦ_B/I [H]</p>
+<p class="key"><b>Solenoid:</b> L=μ₀N²A/ℓ; <b>Toroid:</b> L=μ₀N²A/(2πr)</p>
+<p class="key"><b>U=½LI²</b>; <b>u_B=B²/(2μ₀)</b></p>
+
+<h2>RL Circuit | τ=L/R</h2>
+<p class="exam"><b>Energizing:</b> i(t)=(ε/R)[1−e<sup>−Rt/L</sup>]</p>
+<p class="exam"><b>Decay:</b> i(t)=I₀e<sup>−Rt/L</sup></p>
+<p class="exam">t=0: i=0 (inductor blocks); t=∞: i=ε/R</p>
+<p class="cheat">Find L from decay: L=Rt/ln(I₀/I)</p>
+
+<h2>LC Oscillation</h2>
+<p class="key"><b>ω₀=1/√(LC)</b>; f=1/(2π√(LC))</p>
+
+<h2>★ Damped LRC (series)</h2>
+<p class="cheat">ω'=√(1/LC − R²/(4L²))</p>
+<p class="cheat">Amp decay: A(t)=A₀e<sup>−Rt/(2L)</sup>; t to fraction f: t=−(2L/R)ln(f)</p>
+<p class="cheat">Critical: R_c=2√(L/C). R&lt;R_c under; R&gt;R_c over</p>
+
+<!-- CH 31 -->
+<h1>CH 31 — AC CIRCUITS</h1>
+<p class="key">V(t)=V_max cos ωt; I(t)=I_max cos(ωt−φ)</p>
+<p class="key"><b>V_rms=V_max/√2</b>; I_rms=I_max/√2</p>
+<p class="key"><b>R:</b> in phase, V_R=IR</p>
+<p class="key"><b>L:</b> V leads 90°, X_L=ωL, V_L=IX_L</p>
+<p class="key"><b>C:</b> V lags 90°, X_C=1/(ωC), V_C=IX_C</p>
+<p class="note">"ELI the ICE man" — E leads I in L; I leads E in C</p>
+
+<h2>Series LRC</h2>
+<p class="key"><b>Z=√(R²+(X_L−X_C)²)</b>; I=V/Z</p>
+<p class="key"><b>tan φ=(X_L−X_C)/R</b></p>
+<p class="key"><b>Resonance:</b> X_L=X_C; ω₀=1/√(LC); Z=R</p>
+<p class="key"><b>P_avg=V_rms·I_rms·cos φ=I²_rms·R</b></p>
+
+<h2>★ Phasor Diagram Tips</h2>
+<p class="cheat">Draw: V_R along I (in phase); V_L straight up (+90°); V_C straight down (−90°). V_source = vector sum.</p>
+<p class="cheat">|V_source|² = V_R² + (V_L−V_C)²</p>
+
+<h2>★ Transformer (ideal)</h2>
+<p class="cheat"><b>V₂/V₁ = N₂/N₁</b> (turns ratio)</p>
+<p class="cheat"><b>I₂/I₁ = N₁/N₂</b> (inverse, conserves power)</p>
+<p class="cheat">P₁=P₂ → V₁I₁=V₂I₂ (ideal, no loss)</p>
+<p class="cheat">Step-up: N₂&gt;N₁ → V↑, I↓. Step-down: opposite.</p>
+
+<!-- CH 32 -->
+<h1>CH 32 — EM WAVES</h1>
+<p class="exam"><b>E=E_m sin(kx−ωt)</b>; <b>B=B_m sin(kx−ωt)</b></p>
+<p class="exam"><b>E_m/B_m=c</b>; <b>E(t)/B(t)=c</b></p>
+<p class="exam"><b>c=1/√(μ₀ε₀)=fλ=ω/k</b></p>
+<p class="exam"><b>k=2π/λ</b>; <b>ω=2π/T=2πf</b></p>
+<p class="exam"><b>S⃗=(1/μ₀)(E⃗×B⃗)</b>; |S|=EB/μ₀=E²/(cμ₀)=cB²/μ₀</p>
+<p class="exam"><b>I=S_avg=E_m B_m/(2μ₀)=½cε₀E_m²=E_m²/(2μ₀c)</b></p>
+<p class="key"><b>Rad pressure:</b> Absorb: P=I/c. Reflect: P=2I/c</p>
+<p class="note">E⃗×B⃗ → propagation dir (RHR). Spectrum (low→high f): Radio &lt; μW &lt; IR &lt; Vis(400-700nm) &lt; UV &lt; X &lt; γ</p>
+
+<h2>★ Maxwell's 4 Equations</h2>
+<p class="key"><b>1. Gauss (E):</b> ∮E·dA = Q_encl/ε₀</p>
+<p class="key"><b>2. Gauss (B):</b> ∮B·dA = 0 (no monopoles)</p>
+<p class="key"><b>3. Faraday:</b> ∮E·dl = −dΦ_B/dt</p>
+<p class="key"><b>4. Ampere–Maxwell:</b> ∮B·dl = μ₀(I_C + ε₀ dΦ_E/dt)</p>
+
+<h2>★ Right-Hand Rule Cheatsheet</h2>
+<p class="info-box"><b>F=qv×B (charge):</b> fingers along v, curl to B, thumb=F (flip sign if q&lt;0)</p>
+<p class="info-box"><b>B from wire:</b> thumb along I, fingers curl in dir of B</p>
+<p class="info-box"><b>Ampere loop:</b> fingers along path, thumb = + I direction</p>
+<p class="info-box"><b>Loop μ:</b> fingers curl with I, thumb = μ direction</p>
+<p class="info-box"><b>EM wave:</b> fingers E, curl to B, thumb = propagation</p>
+<p class="info-box"><b>Lenz:</b> Find dΦ direction, induced B opposes it, then RHR for I</p>
+
+<h2>★ Common Pitfalls</h2>
+<p class="pitfall">Φ_B in T·m² (NOT Wb) per prof</p>
+<p class="pitfall">RC charging is 1−e^(−t/RC); discharging is e^(−t/RC). Don't swap.</p>
+<p class="pitfall">RL: at t=0 inductor BLOCKS (i=0). Capacitor at t=0 is a wire (V=0).</p>
+<p class="pitfall">"Toroid" r is from CENTER of toroid (not from wire).</p>
+<p class="pitfall">Cap disconnected → Q const, E unchanged when d changes. Connected → V const.</p>
+<p class="pitfall">cos vs sin in Φ: cosθ when θ from normal; sinθ if from plane.</p>
+<p class="pitfall">In LRC: V_C+V_L+V_R ≠ V_source (algebraic). Use phasor sum.</p>
+
+<!-- =============== UNITS REFERENCE =============== -->
+<div class="units-section">
+<h1>📐 UNITS REFERENCE &amp; SI PREFIXES</h1>
+<div class="units-grid">
+
+<table class="units">
+<tr><th>Quantity</th><th>Sym</th><th>SI Unit</th><th>Equiv</th></tr>
+<tr><td>Charge</td><td>q,Q</td><td>C</td><td>A·s</td></tr>
+<tr><td>E-field</td><td>E</td><td>N/C</td><td>V/m</td></tr>
+<tr><td>Potential</td><td>V</td><td>V</td><td>J/C</td></tr>
+<tr><td>PE/Energy</td><td>U</td><td>J</td><td>C·V, N·m</td></tr>
+<tr><td>Capacitance</td><td>C</td><td>F</td><td>C/V</td></tr>
+<tr><td>Current</td><td>I</td><td>A</td><td>C/s</td></tr>
+<tr><td>Curr density</td><td>J</td><td>A/m²</td><td>—</td></tr>
+<tr><td>Resistance</td><td>R</td><td>Ω</td><td>V/A</td></tr>
+<tr><td>Resistivity</td><td>ρ</td><td>Ω·m</td><td>—</td></tr>
+<tr><td>Power</td><td>P</td><td>W</td><td>J/s, V·A</td></tr>
+<tr><td>EMF</td><td>ε</td><td>V</td><td>J/C</td></tr>
+<tr><td>B-field</td><td>B</td><td>T</td><td>N/(A·m), kg/(A·s²)</td></tr>
+<tr><td><b>Mag flux ⚠</b></td><td>Φ_B</td><td><b>T·m²</b></td><td>NOT Wb</td></tr>
+<tr><td>Inductance</td><td>L</td><td>H</td><td>V·s/A</td></tr>
+<tr><td>Reactance</td><td>X_L,X_C</td><td>Ω</td><td>—</td></tr>
+<tr><td>Impedance</td><td>Z</td><td>Ω</td><td>—</td></tr>
+<tr><td>Mag moment</td><td>μ</td><td>A·m²</td><td>J/T</td></tr>
+</table>
+
+<table class="units">
+<tr><th>Quantity</th><th>Sym</th><th>SI Unit</th><th>Equiv</th></tr>
+<tr><td>Frequency</td><td>f</td><td>Hz</td><td>1/s</td></tr>
+<tr><td>Angular freq</td><td>ω</td><td>rad/s</td><td>—</td></tr>
+<tr><td>Wavelength</td><td>λ</td><td>m</td><td>—</td></tr>
+<tr><td>Wave number</td><td>k</td><td>rad/m</td><td>1/m</td></tr>
+<tr><td>Period</td><td>T</td><td>s</td><td>—</td></tr>
+<tr><td>Energy density</td><td>u</td><td>J/m³</td><td>—</td></tr>
+<tr><td>Intensity/Poynt</td><td>I,S</td><td>W/m²</td><td>—</td></tr>
+<tr><td>Rad pressure</td><td>P_rad</td><td>Pa</td><td>N/m²</td></tr>
+<tr><td>Linear chg</td><td>λ</td><td>C/m</td><td>—</td></tr>
+<tr><td>Surface chg</td><td>σ</td><td>C/m²</td><td>—</td></tr>
+<tr><td>Volume chg</td><td>ρ</td><td>C/m³</td><td>—</td></tr>
+<tr><td>Permittivity</td><td>ε₀</td><td>C²/(N·m²)</td><td>F/m</td></tr>
+<tr><td>Permeability</td><td>μ₀</td><td>T·m/A</td><td>H/m</td></tr>
+<tr><td>Dipole moment</td><td>p</td><td>C·m</td><td>—</td></tr>
+<tr><td>Drift vel</td><td>v_d</td><td>m/s</td><td>—</td></tr>
+<tr><td>Conductivity</td><td>σ</td><td>S/m</td><td>1/(Ω·m)</td></tr>
+</table>
+
+</div>
+<table class="prefixes" style="margin-top:2px;">
+<tr><th>SI Prefix</th><th>p (pico)</th><th>n (nano)</th><th>μ (micro)</th><th>m (milli)</th><th>c (centi)</th><th>k (kilo)</th><th>M (mega)</th><th>G (giga)</th><th>T (tera)</th></tr>
+<tr><td><b>Power</b></td><td>10⁻¹²</td><td>10⁻⁹</td><td>10⁻⁶</td><td>10⁻³</td><td>10⁻²</td><td>10³</td><td>10⁶</td><td>10⁹</td><td>10¹²</td></tr>
+</table>
+</div>
+
+<!-- =============== EXPANDED TRIAGE =============== -->
+<div class="triage-section">
+<h1>🎯 EXAM TRIAGE — KEYWORD → FORMULA (Expanded)</h1>
+<div class="triage-grid">
+<p><b>"insulating sphere E in/out"</b> → kQr/R³ vs kQ/r²</p>
+<p><b>"infinite line/wire E"</b> → λ/(2πε₀r)</p>
+<p><b>"infinite sheet E"</b> → σ/(2ε₀)</p>
+<p><b>"conductor surface E"</b> → σ/ε₀</p>
+<p><b>"point charge E"</b> → kQ/r²</p>
+<p><b>"point charge V"</b> → kQ/r</p>
+<p><b>"ring on axis E"</b> → kqz/(z²+a²)<sup>3/2</sup></p>
+<p><b>"semicircle ±Q"</b> → 4kQ/(πa²)</p>
+<p><b>"cavity in sphere"</b> → ρh/(3ε₀) uniform</p>
+<p><b>"flux through hemisphere"</b> → q/(2ε₀)</p>
+<p><b>"V from line of charge"</b> → 2kλ ln(r₀/r)</p>
+<p><b>"work to move charge"</b> → W=qΔV</p>
+<p><b>"speed gained from V"</b> → v=√(2qV/m)</p>
+<p><b>"E between plates"</b> → V/d</p>
+<p><b>"cap C from area"</b> → ε₀A/d</p>
+<p><b>"cap energy"</b> → ½CV² = Q²/(2C)</p>
+<p><b>"cap with dielectric"</b> → C=κε₀A/d</p>
+<p><b>"cap disconn., move plates"</b> → Q const, U∝d</p>
+<p><b>"cap stays connected"</b> → V const, U∝1/d</p>
+<p><b>"caps in series"</b> → 1/C_eq=Σ1/Cᵢ</p>
+<p><b>"caps in parallel"</b> → C_eq=ΣCᵢ</p>
+<p><b>"equiv resistance"</b> → reduce series+par groups</p>
+<p><b>"two R parallel"</b> → R₁R₂/(R₁+R₂)</p>
+<p><b>"power in resistor"</b> → I²R = V²/R</p>
+<p><b>"battery terminal V"</b> → ε−Ir</p>
+<p><b>"two batteries opposing"</b> → I=|ε₁−ε₂|/ΣR</p>
+<p><b>"wire R from L,A"</b> → R=ρL/A</p>
+<p><b>"drift velocity"</b> → I=nqv_dA</p>
+<p><b>"RC voltage at time t"</b> → V_C=ε(1−e<sup>−t/RC</sup>)</p>
+<p><b>"RC initial (t=0)"</b> → V_C=0, V_R=ε, i=ε/R</p>
+<p><b>"RC final (t=∞)"</b> → V_C=ε, V_R=0, i=0</p>
+<p><b>"RC discharge V"</b> → V₀ e<sup>−t/RC</sup></p>
+<p><b>"time to charge to half"</b> → t=RC ln 2</p>
+<p><b>"loop entering B"</b> → I=BLv/R</p>
+<p><b>"slide wire EMF"</b> → ε=BLv</p>
+<p><b>"force to push rod"</b> → B²L²v/R</p>
+<p><b>"undeflected ion"</b> → v=E/B</p>
+<p><b>"mass spec m/q"</b> → B²R²/(2V)</p>
+<p><b>"radius circular motion B"</b> → r=mv/(qB)</p>
+<p><b>"period in B-field"</b> → 2πm/(qB)</p>
+<p><b>"force ∥ wires/length"</b> → μ₀I₁I₂/(2πd)</p>
+<p><b>"toroid B inside"</b> → μ₀NI/(2πr)</p>
+<p><b>"toroid B outside"</b> → 0</p>
+<p><b>"solenoid B"</b> → μ₀nI</p>
+<p><b>"moving charge B"</b> → (μ₀/4π)qv sinθ/r²</p>
+<p><b>"long wire B"</b> → μ₀I/(2πr)</p>
+<p><b>"inside wire B (r&lt;R)"</b> → μ₀Ir/(2πR²)</p>
+<p><b>"center loop B"</b> → μ₀I/(2R)</p>
+<p><b>"torque on loop"</b> → μ×B = NIAB sinθ</p>
+<p><b>"PE of dipole in B"</b> → −μ·B</p>
+<p><b>"dI/dt in solenoid → E"</b> → (μ₀nr/2)(dI/dt) inside</p>
+<p><b>"charging cap → B"</b> → μ₀I_C·r/(2πR²) inside</p>
+<p><b>"displacement current"</b> → I_D=ε₀ dΦ_E/dt</p>
+<p><b>"rotating coil ε"</b> → NBAω sin(ωt)</p>
+<p><b>"max EMF rotating"</b> → NBAω</p>
+<p><b>"flux when B(t)"</b> → ε=−A cosθ dB/dt</p>
+<p><b>"L of solenoid"</b> → μ₀N²A/ℓ</p>
+<p><b>"L of toroid"</b> → μ₀N²A/(2πr)</p>
+<p><b>"inductor energy"</b> → ½LI²</p>
+<p><b>"u_B (B-field density)"</b> → B²/(2μ₀)</p>
+<p><b>"RL energizing"</b> → (ε/R)[1−e<sup>−Rt/L</sup>]</p>
+<p><b>"RL decay"</b> → I₀ e<sup>−Rt/L</sup></p>
+<p><b>"RL find L"</b> → L=Rt/ln(I₀/I)</p>
+<p><b>"τ for RL"</b> → L/R</p>
+<p><b>"τ for RC"</b> → RC</p>
+<p><b>"LC freq"</b> → 1/(2π√LC)</p>
+<p><b>"LRC critical R"</b> → 2√(L/C)</p>
+<p><b>"LRC underdamped ω"</b> → √(1/LC−R²/4L²)</p>
+<p><b>"amplitude decay LRC"</b> → e<sup>−Rt/2L</sup></p>
+<p><b>"X_L"</b> → ωL</p>
+<p><b>"X_C"</b> → 1/(ωC)</p>
+<p><b>"impedance Z"</b> → √(R²+(X_L−X_C)²)</p>
+<p><b>"resonance ω"</b> → 1/√(LC)</p>
+<p><b>"phase angle"</b> → tan φ=(X_L−X_C)/R</p>
+<p><b>"P_avg AC"</b> → I_rms² R = V_rms I_rms cos φ</p>
+<p><b>"V_rms"</b> → V_max/√2</p>
+<p><b>"transformer V"</b> → V₂/V₁ = N₂/N₁</p>
+<p><b>"transformer I"</b> → I₂/I₁ = N₁/N₂</p>
+<p><b>"EM wave B from E"</b> → B=E/c</p>
+<p><b>"intensity from E_m"</b> → ½cε₀E_m²</p>
+<p><b>"Poynting"</b> → (1/μ₀)E×B</p>
+<p><b>"|S|"</b> → EB/μ₀ = E²/(cμ₀)</p>
+<p><b>"rad pressure absorb"</b> → I/c</p>
+<p><b>"rad pressure reflect"</b> → 2I/c</p>
+<p><b>"k from λ"</b> → 2π/λ</p>
+<p><b>"ω from f"</b> → 2πf</p>
+<p><b>"c from μ₀,ε₀"</b> → 1/√(μ₀ε₀)</p>
+<p><b>"E and B in phase"</b> → both sin(kx−ωt)</p>
+<p><b>"Maxwell ∮E·dA"</b> → Q_encl/ε₀</p>
+<p><b>"Maxwell ∮B·dA"</b> → 0</p>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
